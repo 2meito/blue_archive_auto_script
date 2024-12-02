@@ -197,7 +197,7 @@ def check_onnxruntime():
 
 
 def start_app():
-    _path = './env/Scripts/pythonw.exe' if platform.system() == 'Windows' else './lib/bin/python3'
+    _path = './env/Scripts/pythonw.exe' if platform.system() == 'Windows' else './env/bin/python3'
     _path = './env/Scripts/python' if args.debug and platform.system() == 'Windows' else _path
     proc = subprocess.Popen([_path, './window.py'], )
     return proc.pid
