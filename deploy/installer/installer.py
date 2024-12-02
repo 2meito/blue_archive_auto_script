@@ -123,8 +123,7 @@ def install_package():
         # If Linux, don't create a virtual environment
         if system == 'Linux':
             env_python_exec = './env/bin/python3'
-            subprocess.run([env_python_exec, '-m', 'pip', 'install', '-r', './requirements-linux.txt', '-i',
-                            'https://pypi.tuna.tsinghua.edu.cn/simple', '--no-warn-script-location'], check=True)
+            subprocess.run([env_python_exec, '-m', 'pip', 'install', '-r', './requirements-linux.txt', '--no-warn-script-location'], check=True)
             return
 
         if system == 'Windows':
@@ -136,8 +135,7 @@ def install_package():
         if not os.path.exists('./env/Scripts/python.exe'):
             # Install virtualenv package
             subprocess.run(
-                [python_exec_file, '-m', 'pip', 'install', 'virtualenv', '-i',
-                 'https://pypi.tuna.tsinghua.edu.cn/simple',
+                [python_exec_file, '-m', 'pip', 'install', 'virtualenv',
                  '--no-warn-script-location'], check=True)
 
             # Create the virtual environment
@@ -147,8 +145,7 @@ def install_package():
             # shutil.rmtree('./lib')
 
         # Install packages in requirements.txt within the virtual environment
-        subprocess.run([env_python_exec, '-m', 'pip', 'install', '-r', './requirements.txt', '-i',
-                        'https://pypi.tuna.tsinghua.edu.cn/simple', '--no-warn-script-location'], check=True)
+        subprocess.run([env_python_exec, '-m', 'pip', 'install', '-r', './requirements.txt', '--no-warn-script-location'], check=True)
 
         print("Packages installed successfully")
 
@@ -383,7 +380,7 @@ def check_git():
             # Reset the local repository to the state of the remote repository
             porcelain.reset(repo, mode='hard')
             # Pull the latest changes from the remote repository
-            porcelain.pull(repo, REPO_URL_HTTP, 'master', protocol_version=0)
+            porcelain.pull(repo, REPO_URL_HTTP, 'master')
             updated_local_sha = repo.head().decode('ascii')
             if updated_local_sha == remote_sha:
                 logger.info("Update success")
